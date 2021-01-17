@@ -1,3 +1,3 @@
 # w
 
-Do cool things
+Optimize for joy
