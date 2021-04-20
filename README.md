@@ -1,6 +1,6 @@
 # w
 
-Do cool things
+Work manager
 
 ## Build
 cargo build --release
