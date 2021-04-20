@@ -4,6 +4,13 @@ use std::io::prelude::*;
 
 use std::io;
 
+fn flush() {
+    io::stdout()
+        .flush()
+        .map_err(|err| println!("{:?}", err))
+        .ok();
+}
+
 fn main() {
     let start_hour: u32 = std::env::args()
         .nth(1)
@@ -21,22 +28,14 @@ fn main() {
     for h in start_hour..start_hour + 3 {
         let activity_hour = date.and_hms(h, 0, 0);
         print!("Enter activity at {}: ", activity_hour.format("%H:%M"));
-        io::stdout()
-            .flush()
-            .map_err(|err| println!("{:?}", err))
-            .ok();
-
+        flush();
         let mut activity = String::new();
         io::stdin()
             .read_line(&mut activity)
             .expect("error: unable to read user input");
         activity.pop();
         print!("Enter joy: ");
-
-        io::stdout()
-            .flush()
-            .map_err(|err| println!("{:?}", err))
-            .ok();
+        flush();
         let mut joy = String::new();
         io::stdin()
             .read_line(&mut joy)
@@ -44,7 +43,7 @@ fn main() {
         joy.pop();
 
         print!("Enter importance: ");
-        io::stdout().flush().expect("unable to flush");
+        flush();
         let mut importance = String::new();
         io::stdin()
             .read_line(&mut importance)
